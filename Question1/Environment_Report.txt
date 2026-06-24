@@ -1,0 +1,75 @@
+LINUX ENVIRONMENT VERIFICATION REPORT
+
+1. Username and Groups
+Command: id
+
+Output:
+uid=1000(lovepreet) gid=1000(lovepreet) groups=1000(lovepreet),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users)
+
+Observation:
+The id command displays the current user ID, group ID, and all groups associated with the account. 
+It helps verify the user identity and permissions.
+
+--------------------------------------------------
+
+2. Current Shell
+
+Command: echo $SHELL
+
+Output:
+/bin/bash
+
+Observation:
+This command displays the default shell currently being used. 
+The output indicates that Bash is being used for executing commands.
+
+--------------------------------------------------
+
+3. Current Working Directory
+
+Command: pwd
+
+Output:
+/home/lovepreet/Linux-Lab-Assignment/Question1
+
+Observation:
+This command displays the present working directory. It shows the current location in the Linux file system.
+
+--------------------------------------------------
+
+4. Files and Directories
+
+Command: ls -la
+
+Output:
+total 56
+drwxr-xr-x 2 lovepreet lovepreet  4096 Jun 24 05:26 .
+drwxr-xr-x 7 lovepreet lovepreet  4096 Jun 24 05:04 ..
+-rw-r--r-- 1 lovepreet lovepreet   895 Jun 24 05:27 Environment_Report.txt
+-rw-r--r-- 1 lovepreet lovepreet 16044 Jun 24 05:09 screenshot1.png
+-rw-r--r-- 1 lovepreet lovepreet 11498 Jun 24 05:18 screenshot2.png
+-rw-r--r-- 1 lovepreet lovepreet 13429 Jun 24 05:25 screenshot3.png
+
+Observation:
+This command lists all files and directories, including hidden files, along with detailed information such as permissions and ownership.
+
+--------------------------------------------------
+
+5. Network Connectivity Verification
+
+Command: ping -c 4 google.com
+
+Output:
+PING google.com (142.250.206.14) 56(84) bytes of data.
+64 bytes from pnmaaa-ax-in-f14.1e100.net (142.250.206.14): icmp_seq=1 ttl=114 time=25.5 ms
+64 bytes from pnmaaa-ax-in-f14.1e100.net (142.250.206.14): icmp_seq=2 ttl=114 time=19.0 ms
+64 bytes from pnmaaa-ax-in-f14.1e100.net (142.250.206.14): icmp_seq=3 ttl=114 time=101 ms
+64 bytes from pnmaaa-ax-in-f14.1e100.net (142.250.206.14): icmp_seq=4 ttl=114 time=166 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 18.975/77.719/165.672/60.079 ms
+
+Observation:
+This command sends four packets to Google's server to verify internet connectivity. 
+Successful replies indicate that the network connection is working properly.

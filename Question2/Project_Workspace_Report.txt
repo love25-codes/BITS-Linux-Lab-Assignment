@@ -1,0 +1,84 @@
+SECURE PROJECT WORKSPACE REPORT
+
+1. Directory Structure Created
+
+Command:
+mkdir ProjectWorkspace
+mkdir ProjectWorkspace/ProjectFiles
+mkdir ProjectWorkspace/Documentation
+
+Output:
+ProjectWorkspace
+├── Documentation
+└── ProjectFiles
+
+Observation:
+A project workspace was created with separate folders for project files and documentation. This improves organization and management of project resources.
+
+--------------------------------------------------
+
+2. File Permissions Before Modification
+
+Command:
+ls -ld ProjectWorkspace
+
+Output:
+drwxr-xr-x 4 lovepreet lovepreet 4096 Jun 24 05:42 ProjectWorkspace
+
+Observation:
+The workspace initially had default permissions assigned by Linux during creation.
+
+--------------------------------------------------
+
+3. File Permissions After Modification
+
+Command:
+chmod 700 ProjectWorkspace
+ls -ld ProjectWorkspace
+
+Output:
+drwx------ 4 lovepreet lovepreet 4096 Jun 24 05:42 ProjectWorkspace
+
+Observation:
+Permissions were modified to restrict access to the owner only, improving security.
+
+--------------------------------------------------
+
+4. Ownership Details
+
+Command:
+stat ProjectWorkspace
+
+Output:
+  File: ProjectWorkspace
+  size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 8,48    Inode: 44954       Links: 4
+Access: (0755/drwxr-xr-x)  Uid: ( 1000/lovepreet)   Gid: ( 1000/lovepreet)
+Access: 2026-06-24 05:43:24.203461366 +0000
+Modify: 2026-06-24 05:42:45.731463084 +0000
+Change: 2026-06-24 05:42:45.731463084 +0000
+ Birth: 2026-06-24 05:42:08.079454959 +0000
+
+Observation:
+The workspace is owned by the current user account and belongs to the user's primary group.
+
+--------------------------------------------------
+
+5. Umask Value Used
+
+Command:
+umask
+
+Output:
+0022
+
+Observation:
+The umask value determines the default permissions assigned to newly created files and directories.
+
+--------------------------------------------------
+
+6. How Permissions Protect Project Data
+
+Explanation:
+Linux permissions control who can read, write, and execute files or directories. 
+Restricting permissions prevents unauthorized users from accessing or modifying sensitive project data.

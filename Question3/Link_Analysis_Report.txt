@@ -1,0 +1,143 @@
+LINK ANALYSIS REPORT
+
+FILE SYSTEM AND LINK ANALYSIS
+
+1. Creation of Original File, Hard Link, and Symbolic Link
+
+Commands Used:
+touch original_file.txt
+ln original_file.txt hard_link.txt
+ln -s original_file.txt symbolic_link.txt
+
+Output:
+total 120
+-rw-r--r-- 1 lovepreet lovepreet  2646 Jun 24 05:59 Link_Analysis_Report.txt
+-rw-r--r-- 2 lovepreet lovepreet    22 Jun 24 06:01 hard_link.txt
+-rw-r--r-- 2 lovepreet lovepreet    22 Jun 24 06:01 original_file.txt
+-rw-r--r-- 1 lovepreet lovepreet 60283 Jun 24 05:55 screenshot1.png
+-rw-r--r-- 1 lovepreet lovepreet 45246 Jun 24 06:02 screenshot2.png
+lrwxrwxrwx 1 lovepreet lovepreet    17 Jun 24 06:02 symbolic_link.txt -> original_file.txt
+
+Observation:
+An original file was created along with a hard link and a symbolic link. 
+These links were used to study how Linux manages file references and storage.
+
+--------------------------------------------------
+
+2. Inode Numbers of All Files
+
+Command:
+ls -i
+
+Output:
+44962 Link_Analysis_Report.txt  44963 original_file.txt  44965 screenshot2.png  44966 symbolic_link.txt
+44963 hard_link.txt             44964 screenshot1.png    44967 screenshot3.png
+
+Observation:
+The inode numbers were examined to understand the relationship between the original file, hard link, and symbolic link. 
+The results indicate how Linux internally references files.
+
+--------------------------------------------------
+
+3. Metadata Collection
+
+Command:
+stat original_file.txt
+
+Output:
+  File: original_file.txt
+  size: 22              Blocks: 8          IO Block: 4096   regular file
+Device: 8,48    Inode: 44963       Links: 2
+Access: (0644/-rw-r--r--)  Uid: ( 1000/lovepreet)   Gid: ( 1000/lovepreet)
+Access: 2026-06-24 06:01:31.195422148 +0000
+Modify: 2026-06-24 06:01:18.423423295 +0000
+Change: 2026-06-24 06:01:52.967421176 +0000
+ Birth: 2026-06-24 06:01:11.595423961 +0000
+
+
+ Command:
+stat hard_link.txt
+
+Output:
+  File: hard_link.txt
+  size: 22              Blocks: 8          IO Block: 4096   regular file
+Device: 8,48    Inode: 44963       Links: 2
+Access: (0644/-rw-r--r--)  Uid: ( 1000/lovepreet)   Gid: ( 1000/lovepreet)
+Access: 2026-06-24 06:01:31.195422148 +0000
+Modify: 2026-06-24 06:01:18.423423295 +0000
+Change: 2026-06-24 06:01:52.967421176 +0000
+ Birth: 2026-06-24 06:01:11.595423961 +0000
+
+
+  Command:
+stat symbolic_link.txt
+
+Output:
+  File: 'symbolic_link.txt' -> 'original_file.txt'
+  size: 17              Blocks: 0          IO Block: 4096   symbolic link
+Device: 8,48    Inode: 44966       Links: 1
+Access: (0777/lrwxrwxrwx)  Uid: ( 1000/lovepreet)   Gid: ( 1000/lovepreet)
+Access: 2026-06-24 06:02:46.427436704 +0000
+Modify: 2026-06-24 06:02:39.555437333 +0000
+Change: 2026-06-24 06:02:39.555437333 +0000
+ Birth: 2026-06-24 06:02:39.555437333 +0000
+
+Observation:
+Metadata such as file size, permissions, ownership, timestamps, and inode information was collected. 
+This information provides insight into how Linux stores and manages files.
+
+--------------------------------------------------
+
+4. Comparison Between Hard Link and Symbolic Link
+
+Observation:
+
+Hard Link:
+
+* Directly references the file data through the file system.
+* Closely associated with the original file's inode information.
+* Continues to provide access to the file data as long as a valid reference exists.
+
+Symbolic Link:
+
+* Acts as a reference to a file path.
+* Maintains separate file information from the original file.
+* Depends on the existence of the referenced file path.
+
+--------------------------------------------------
+
+5. Effect of Deleting the Original File
+
+Commands Used:
+rm original_file.txt
+
+Command: 
+cat hard_link.txt
+Output:
+Linux Link Experiment
+
+Command: 
+cat symbolic_link.txt
+Output:
+cat: symbolic_link.txt: No such file or directory
+
+Observation:
+The behavior of the hard link and symbolic link was examined after removing the original file. 
+The experiment demonstrated the difference between inode-based references and path-based references.
+
+--------------------------------------------------
+
+6. Summary of Findings
+
+The experiment demonstrated how Linux implements hard links and symbolic links. 
+Inode information was analyzed, metadata was collected, and the effects of deleting the original file were observed. 
+The investigation provided practical understanding of Linux file management and link behavior.
+
+
+--------------------------------------------------
+
+7. Conclusion
+
+Linux uses inode structures to manage files efficiently. 
+Hard links and symbolic links provide different mechanisms for referencing files. 
+Through this experiment, the relationship between file references, metadata, and file system behavior was successfully studied.

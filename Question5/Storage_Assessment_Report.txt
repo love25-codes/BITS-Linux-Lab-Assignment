@@ -1,0 +1,118 @@
+STORAGE HEALTH ASSESSMENT REPORT
+1. Available Storage Devices
+
+Command:
+lsblk
+
+Output:
+NAME MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda    8:0    0 356.9M  1 disk
+sdb    8:16   0 159.5M  1 disk
+sdc    8:32   0     2G  0 disk [SWAP]
+sdd    8:48   0     1T  0 disk /mnt/wslg/distro
+                               /
+Observation:
+The lsblk command displayed all available storage devices and partitions connected to the system.
+
+--------------------------------------------------
+
+2. Mounted File Systems
+
+Command:
+df -h
+
+Output:
+Filesystem      Size  Used Avail Use% Mounted on
+none            3.8G     0  3.8G   0% /usr/lib/modules/6.18.33.1-microsoft-standard-WSL2
+none            3.8G  4.0K  3.8G   1% /mnt/wsl
+drivers         182G   84G   98G  47% /usr/lib/wsl/drivers
+/dev/sdd       1007G  1.3G  955G   1% /
+none            3.8G   60K  3.8G   1% /mnt/wslg
+none            3.8G     0  3.8G   0% /usr/lib/wsl/lib
+rootfs          3.8G  2.8M  3.8G   1% /init
+none            3.8G  532K  3.8G   1% /run
+none            3.8G     0  3.8G   0% /run/lock
+none            3.8G     0  3.8G   0% /run/shm
+none            3.8G   80K  3.8G   1% /mnt/wslg/versions.txt
+none            3.8G   80K  3.8G   1% /mnt/wslg/doc
+C:\             182G   84G   98G  47% /mnt/c
+D:\             295G  6.1G  289G   3% /mnt/d
+none            1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           3.8G     0  3.8G   0% /tmp
+none            1.0M     0  1.0M   0% /run/credentials/systemd-resolved.service
+none            1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs           766M   12K  766M   1% /run/user/1000
+Observation:
+The mounted file systems and their available storage capacities were identified.
+
+--------------------------------------------------
+
+3. Disk Usage Statistics
+
+Command:
+du -sh .
+Output: 332K    .
+
+Command:
+du -sh ~
+Output:
+1.4M    /home/lovepreet
+
+
+Observation:
+Disk usage statistics were collected for the current directory and home directory.
+
+--------------------------------------------------
+
+4. Inode Utilization
+
+Command:
+df -i
+
+Output:
+Filesystem       Inodes   IUsed    IFree IUse% Mounted on
+none             979729       5   979724    1% /usr/lib/modules/6.18.33.1-microsoft-standard-WSL2
+none             979729       2   979727    1% /mnt/wsl
+drivers             999 -999001  1000000     - /usr/lib/wsl/drivers
+/dev/sdd       67108864   44997 67063867    1% /
+none             979729      23   979706    1% /mnt/wslg
+none             979729       5   979724    1% /usr/lib/wsl/lib
+rootfs           978290      12   978278    1% /init
+none             979729     551   979178    1% /run
+none             979729       2   979727    1% /run/lock
+none             979729       1   979728    1% /run/shm
+none             979729      53   979676    1% /mnt/wslg/versions.txt
+none             979729      53   979676    1% /mnt/wslg/doc
+C:\                 999 -999001  1000000     - /mnt/c
+D:\                 999 -999001  1000000     - /mnt/d
+none               1024       1     1023    1% /run/credentials/systemd-journald.service
+tmpfs           1048576       8  1048568    1% /tmp
+none               1024       1     1023    1% /run/credentials/systemd-resolved.service
+none               1024       1     1023    1% /run/credentials/getty@tty1.service
+tmpfs            195945      44   195901    1% /run/user/1000
+Observation:
+The inode usage information was examined to determine file allocation capacity.
+
+--------------------------------------------------
+
+5. Storage Health Observations
+
+Observation:
+Storage devices, mounted file systems, available space, and inode utilization were reviewed to assess overall storage health.
+
+--------------------------------------------------
+
+6. Recommendations for Improving Storage Utilization
+
+Recommendations:
+- Remove unnecessary files.
+- Archive old data.
+- Monitor disk space regularly.
+- Monitor inode usage.
+- Maintain adequate free storage capacity.
+
+--------------------------------------------------
+
+7. Conclusion
+
+The storage assessment provided information about available storage devices, mounted file systems, disk usage, and inode utilization. The collected information can be used for capacity planning and storage management.
